@@ -9,7 +9,7 @@ export default function Home() {
   const [pagination, setPagination] = useState(1);
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?api_key=eb47659ba7a9220356f6958d4f16e72f&language=en-US&page=${pagination}`,
+      `https://api.themoviedb.org/3/movie/popular?api_key=chavaeb47659ba7a9220356f6958d4f16e72f&language=en-US&page=${pagination}`,
     )
       .then((response) => response.json())
       .then((data) => setResults(data.results));
