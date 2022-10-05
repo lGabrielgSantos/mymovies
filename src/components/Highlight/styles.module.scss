@@ -1,0 +1,55 @@
+.container {
+  .imgBack{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    z-index: -999;
+    -webkit-mask-image: linear-gradient(black 60%, transparent);
+       mask-image: linear-gradient(black, transparent);
+
+  }
+  .content {
+    
+    position: relative;
+    z-index: 1;
+    height: 100vh;
+    max-width: 1120px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    display: flex;
+    gap: 5rem;
+    justify-content: space-between;
+
+    div{
+     color: #e1e1e6;
+      width: 500px;
+     text-shadow: 3px 2px 3px #18191c;
+     align-items: center;
+     h1 {
+      font-size: 3rem;
+     }
+     p{
+      font-size: 1.2rem;
+     }
+    }
+    img {
+      margin-bottom: auto;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0px 0px 20px 5px #18191c;
+      height: 80%;
+      margin-top: 18%;
+      border-radius: 20px;
+      max-width: 500px;
+      -webkit-mask-image: linear-gradient(black 30%, transparent 90%);
+       mask-image: linear-gradient(black, transparent);
+    }
+  }
+
+}
+

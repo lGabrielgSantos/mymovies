@@ -1,0 +1,15 @@
+.cardMovie{
+ height: 500px;
+  img{
+    height: 80%;
+    border-radius: 10px;
+  }
+  h3{
+ line-height: 40px;
+
+  }
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
