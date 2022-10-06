@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { GlobalContext } from '../GlobalContext';
 import styles from '../Highlight/styles.module.scss';
 
 interface IMovie {
@@ -14,12 +16,11 @@ interface IMovie {
 export function Highlight(movies: IMovie) {
   var img = 'https://image.tmdb.org/t/p/w500' + movies.movies.img;
   var poster = 'https://image.tmdb.org/t/p/w500' + movies.movies.poster;
-  var date = '';
-  if(movies.movies.date != undefined){
-    for(var i = 0; i < 4; i++){
-      date = date + Array.from(movies.movies.date)[i]
-     }
-  }
+  
+  const genreContext = useContext(GlobalContext);
+  var date = genreContext.convertDate(movies.movies.date)
+
+
  
   return (
     <section className={styles.container}>
