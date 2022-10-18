@@ -1,10 +1,38 @@
-.containerMovies{
-  width: 1120px;
 
-  align-items: center;
+.containerMovies{
+  max-width: 1120px;
   margin-left: auto;
   margin-right: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  align-items: center;
+  
+  .title{
+    margin-left: auto;
+  margin-right: auto;
+    h1{
+      font-size: 2rem;
+      text-align: center;
+      line-height: 100px;
+      margin-bottom: 100px;
+      border-bottom: 2px solid red;
+    }
+    width: 30%;
+    
+  }
+
+ 
+  .selectHeader{
+    margin-top: 50px;
+    width: 1120px;
+    height: 50px;
+    border-bottom: 2px solid red;
+    margin-bottom: 50px;
+  }
+  .contentMovies{
+    width: 1120px;
+    align-items: center;
+    
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
 }
