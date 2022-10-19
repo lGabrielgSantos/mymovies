@@ -5,6 +5,7 @@ import { SelectBox } from '../components/SelectBox';
 import { Movie } from '../components/MovieCard';
 import styles from './styles.module.scss';
 import { useRouter } from 'next/router';
+import { GlobalContext } from '../components/GlobalContext';
 export default function Home() {
   const [results, setResults] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -12,31 +13,29 @@ export default function Home() {
   const [search, setSearch] = useState('off');
   const [pagination, setPagination] = useState(1);
   const router = useRouter();
+  const globalContext = useContext(GlobalContext);
   var searchValue;
   useEffect(() => {
-    function getMovies() {
-      if (selectGenre === 'all' && search === 'off') {
-        fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=eb47659ba7a9220356f6958d4f16e72f&language=en-US&page=${pagination}`,
-        )
-          .then((response) => response.json())
-          .then((data) => setResults(data.results));
-      } else if(selectGener != 'all'  && search === 'off') {
-
-        fetch(
-          `https://api.themoviedb.org/3/discover/movie?api_key=eb47659ba7a9220356f6958d4f16e72f&language=en-US&with_genres=${selectGenre}&page=${pagination}`,
-        )
-          .then((response) => response.json())
-          .then((data) => setResults(data.results));
-      }else if(search != 'off') {
-        fetch(
-          `https://api.themoviedb.org/3/search/movie?api_key=eb47659ba7a9220356f6958d4f16e72f&query=${search}`,
-        )
-          .then((response) => response.json())
-          .then((data) => setResults(data.results));
+    if (selectGenre === 'all' && search === 'off') {
+      async function getAllMovies() {
+        const all = await globalContext.getAll(pagination);
+        setResults(all);
       }
+      getAllMovies();
+    } else if (selectGener != 'all' && search === 'off') {
+      async function getGenerMovies() {
+        const all = await globalContext.getGener(selectGenre, pagination);
+        setResults(all);
+      }
+      getGenerMovies();
+    } else if (search != 'off') {
+      async function getSearchMovie() {
+        const all = await globalContext.getSearch(search);
+        setResults(all);
+      }
+      getSearchMovie();
     }
-    getMovies();
+
     function getGenre() {
       fetch(
         `https://api.themoviedb.org/3/genre/movie/list?api_key=eb47659ba7a9220356f6958d4f16e72f&language=en-US`,
@@ -60,8 +59,7 @@ export default function Home() {
     event.preventDefault();
     setPagination(1);
     setSelectGenre(event.target[0].value);
-    setSearch('off')
-
+    setSearch('off');
   }
   function searcMovie(event) {
     event.preventDefault();
@@ -84,9 +82,13 @@ export default function Home() {
             <SelectBox geners={genre} fuctionSelect={selectGener} />
 
             <form onSubmit={searcMovie}>
-              <input type="text" placeholder="Seach"  onChange={(event) => {
-                searchValue = event.target.value;
-              }}/>
+              <input
+                type="text"
+                placeholder="Seach"
+                onChange={(event) => {
+                  searchValue = event.target.value;
+                }}
+              />
               <button type="submit">Search</button>
             </form>
           </div>
