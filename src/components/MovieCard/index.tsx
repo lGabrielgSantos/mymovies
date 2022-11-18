@@ -9,7 +9,7 @@ export function Movie(movie){
   var genre2 = genreContext.setGenre(movie.movie.genre_ids[1]) === undefined ? "" : genreContext.setGenre(movie.movie.genre_ids[1]);
 
   var date = genreContext.convertDate(movie.movie.release_date)
-
+  
   return(
     <div className={styles.cardMovie}>
 
