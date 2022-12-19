@@ -78,27 +78,20 @@ console.log("key", apiKey)
       .then((response) => response.json())
     return data.results;
   }
+  async function getMovie(id) {
+    var movie;
+    const data = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=eb47659ba7a9220356f6958d4f16e72f&query&language=en-US`,
+    )
+      .then((response) => response.json())
+      .then(data => {
+        movie = data;
+      })
+    return movie;
+  }
 
-  // function getMovies() {
-  //   if (selectGenre === 'all' && search === 'off') {
-
-  //   } else if(selectGener != 'all'  && search === 'off') {
-
-  //     fetch(
-  //       `https://api.themoviedb.org/3/discover/movie?api_key=eb47659ba7a9220356f6958d4f16e72f&language=en-US&with_genres=${selectGenre}&page=${pagination}`,
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => setResults(data.results));
-  //   }else if(search != 'off') {
-  //     fetch(
-  //       `https://api.themoviedb.org/3/search/movie?api_key=eb47659ba7a9220356f6958d4f16e72f&query=${search}`,
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => setResults(data.results));
-  //   }
-  // }
   return (
-    <GlobalContext.Provider value={{ setGenre, convertDate, getAll, getGener, getSearch }}>
+    <GlobalContext.Provider value={{ setGenre, convertDate, getAll, getGener, getSearch, getMovie }}>
       {children}
     </GlobalContext.Provider>
   );

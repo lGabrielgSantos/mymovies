@@ -1,10 +1,10 @@
 import React, { FormEvent, useEffect, useState, useContext } from 'react';
 import { Header } from '../components/Header';
+import { MyFooter } from '../components/MyFooter';
 import { Highlight } from '../components/Highlight';
 import { SelectBox } from '../components/SelectBox';
 import { Movie } from '../components/MovieCard';
 import styles from './styles.module.scss';
-import { useRouter } from 'next/router';
 import { GlobalContext } from '../components/GlobalContext';
 export default function Home() {
   const [results, setResults] = useState([]);
@@ -13,7 +13,6 @@ export default function Home() {
   const [titlePage, setTitlePage] = useState('Popular Movies');
   const [search, setSearch] = useState('off');
   const [pagination, setPagination] = useState(1);
-  const router = useRouter();
   const globalContext = useContext(GlobalContext);
   var searchValue;
 
@@ -90,10 +89,6 @@ export default function Home() {
       <Header />
       <Highlight movies={topMovie} />
       <div>
-        {/* <button onClick={() => setPagination(pagination + 1)}>NEXT PAGE</button>
-        <button onClick={() => setSelectGenre(14)}>Select genre</button>
-        <button onClick={() => setSelectGenre('all')}>Select all</button>
-        <button onClick={() => router.push(`/oi`)}>NEXT PAGE</button> */}
         <section className={styles.containerMovies}>
           <div className={styles.selectHeader}>
             <SelectBox geners={genre} fuctionSelect={selectGener} />
@@ -114,7 +109,7 @@ export default function Home() {
           </div>
           <div className={styles.contentMovies}>
             {results.map((result) => {
-              return <Movie movie={result} />;
+              return <Movie movie={result} />
             })}
           </div>
 
@@ -129,6 +124,9 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <section>
+        <MyFooter />
+      </section>
     </>
   );
 }

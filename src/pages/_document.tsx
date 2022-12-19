@@ -5,6 +5,7 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
+        <link rel="icon" type="image/x-icon" href="./video-camera.png"></link>
         <Head>
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link

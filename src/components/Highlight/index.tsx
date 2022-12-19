@@ -17,7 +17,7 @@ export function Highlight(movies: IMovie) {
   var img = 'https://image.tmdb.org/t/p/w500' + movies.movies.img;
   var poster = 'https://image.tmdb.org/t/p/w500' + movies.movies.poster;
   
-  const genreContext = useContext(GlobalContext);
+  const genreContext = useContext<any>(GlobalContext);
   var date = genreContext.convertDate(movies.movies.date)
 
 
