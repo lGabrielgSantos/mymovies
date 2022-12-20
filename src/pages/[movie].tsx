@@ -34,7 +34,7 @@ export default function Genre() {
           </div>
           <h1>Production</h1>
           <div className={styles.production}>
-            <img src={imgComp} />
+            {results?.production_companies[0].logo_path ? <img src={imgComp} /> : null}
             <h2>{results?.production_companies[0].name}</h2>
           </div>
         </div>
